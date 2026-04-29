@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="ja" data-root="">
 <head>
   <!-- =========================================================
        基本設定
@@ -110,3 +112,221 @@
        ========================================================= -->
   <link rel="stylesheet" href="styles/global.css" />
 </head>
+<body>
+
+  <!-- ヘッダー（loader.jsが挿入） -->
+  <div id="site-header"></div>
+
+  <main id="main-content">
+
+    <!-- ===== ヒーローセクション ===== -->
+    <section class="hero" aria-label="ヒーロー">
+      <div class="container">
+        <div class="hero__inner">
+          <p class="hero__label">STUDENT VOICES</p>
+          <h1 class="hero__title">
+            先輩たちの<em>リアルな声</em>が<br>
+            あなたの受験を変える。
+          </h1>
+          <p class="hero__desc">
+            実際に大学受験を乗り越えた先輩たちが、勉強法・参考書・スケジュール・失敗談まで包み隠さず語ります。一人ひとりの体験記から、あなただけの合格戦略を見つけてください。
+          </p>
+          <div style="display:flex; gap:var(--space-md); flex-wrap:wrap;">
+            <a href="#taikenki" class="btn btn--primary">体験記を読む</a>
+            <a href="#about"    class="btn btn--outline">このサイトについて</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 統計バー ===== -->
+    <div class="stats-bar" aria-label="サイト統計">
+      <div class="container">
+        <ul class="stats-list">
+          <li class="stat-item">
+            <span class="stat-item__num" id="stat-count">0</span>
+            <span class="stat-item__unit">名の体験記</span>
+          </li>
+          <li class="stat-sep" aria-hidden="true"></li>
+          <li class="stat-item">
+            <span class="stat-item__num" id="stat-univ">0</span>
+            <span class="stat-item__unit">大学の合格実績</span>
+          </li>
+          <li class="stat-sep" aria-hidden="true"></li>
+          <li class="stat-item">
+            <span class="stat-item__num">2025</span>
+            <span class="stat-item__unit">年度版</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== 体験記一覧セクション ===== -->
+    <section class="section" id="taikenki" aria-labelledby="taikenki-title">
+      <div class="container">
+        <header class="section__header">
+          <p class="section__label">TAIKENKI</p>
+          <h2 class="section__title" id="taikenki-title">合格体験記一覧</h2>
+          <p class="section__desc">
+            先輩たちの体験記を読んで、受験勉強のヒントを見つけよう。
+          </p>
+        </header>
+
+        <!-- フィルター -->
+        <div class="filter-bar" role="group" aria-label="フィルター">
+          <button class="filter-btn" data-filter="all">すべて</button>
+          <button class="filter-btn is-active" data-filter="genshiyaku">現役</button>
+          <button class="filter-btn" data-filter="rikei">理系</button>
+          <button class="filter-btn" data-filter="bunkei">文系</button>
+        </div>
+
+        <!-- カード一覧（JSで生成） -->
+        <div class="card-grid" id="card-grid" aria-live="polite">
+          <!-- ローディングプレースホルダー -->
+          <div class="loading-placeholder" style="height:320px;border-radius:var(--radius-lg);" aria-hidden="true"></div>
+          <div class="loading-placeholder" style="height:320px;border-radius:var(--radius-lg);" aria-hidden="true"></div>
+          <div class="loading-placeholder" style="height:320px;border-radius:var(--radius-lg);" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== このサイトについてセクション ===== -->
+    <section class="section section--alt" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <header class="section__header">
+          <p class="section__label">ABOUT</p>
+          <h2 class="section__title" id="about-title">このサイトについて</h2>
+          <p class="section__desc">
+            受験生に寄り添う、リアルな体験記サイトです。
+          </p>
+        </header>
+        <div class="about-grid">
+          <div class="about-item">
+            <div class="about-item__icon" aria-hidden="true">📖</div>
+            <h3 class="about-item__title">リアルな体験記</h3>
+            <p class="about-item__desc">受験を終えた先輩が、成功・失敗を包み隠さず語ります。きれいごとなしのリアルな声をお届けします。</p>
+          </div>
+          <div class="about-item">
+            <div class="about-item__icon" aria-hidden="true">📚</div>
+            <h3 class="about-item__title">参考書・勉強法</h3>
+            <p class="about-item__desc">実際に使った参考書や具体的な勉強法を科目別に紹介。自分に合った方法を見つけるヒントが満載です。</p>
+          </div>
+          <div class="about-item">
+            <div class="about-item__icon" aria-hidden="true">🗓️</div>
+            <h3 class="about-item__title">スケジュール公開</h3>
+            <p class="about-item__desc">1年間の勉強スケジュールを公開。いつ何をどれだけやったかを時系列でたどることができます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター（loader.jsが挿入） -->
+  <div id="site-footer"></div>
+
+  <!-- 共通loader -->
+  <script type="module" src="components/loader.js"></script>
+
+  <!-- 体験記データ＆カード生成スクリプト -->
+  <script type="module">
+    import { TAIKENKI_DATA } from './components/taikenki-data.js';
+
+    /* ============================================================
+       カード生成
+       ============================================================ */
+    function buildCard(person, index) {
+      const card = document.createElement('a');
+      card.className = 'card';
+      card.href      = `taikenki/${person.id}/`;
+      card.setAttribute('data-type', person.type.join(' '));
+      card.style.animationDelay = `${index * 60}ms`;
+      card.setAttribute('aria-label', `${person.initials}さんの体験記 - ${person.univ}`);
+
+      card.innerHTML = `
+        <div class="card__image-placeholder" aria-hidden="true">${person.initials}</div>
+        <div class="card__body">
+          <span class="card__univ">${person.univ}</span>
+          <p class="card__name">${person.initials} さん</p>
+          <p class="card__comment">「${person.comment}」</p>
+          <div class="card__footer">
+            <span class="card__tag">${person.year}</span>
+            <span class="card__arrow" aria-hidden="true">→</span>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    /* ============================================================
+       フィルタリング
+       ============================================================ */
+    let currentFilter = 'all';
+
+    function renderCards(filter) {
+      const grid = document.getElementById('card-grid');
+      grid.innerHTML = '';
+
+      const filtered = filter === 'all'
+        ? TAIKENKI_DATA
+        : TAIKENKI_DATA.filter(p => p.type.includes(filter));
+
+      if (filtered.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'card-empty';
+        empty.textContent = '該当する体験記がありません。';
+        grid.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach((person, i) => {
+        grid.appendChild(buildCard(person, i));
+      });
+    }
+
+    /* ============================================================
+       統計カウントアップ
+       ============================================================ */
+    function countUp(el, target, duration) {
+      let start = 0;
+      const step = target / (duration / 16);
+      const timer = setInterval(() => {
+        start += step;
+        if (start >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(start);
+        }
+      }, 16);
+    }
+
+    /* ============================================================
+       初期化
+       ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+      // カード描画
+      currentFilter = 'genshiyaku';
+      renderCards('genshiyaku');
+
+      // 統計
+      const univSet = new Set(TAIKENKI_DATA.map(p => p.univ.split(' ')[0]));
+      setTimeout(() => {
+        countUp(document.getElementById('stat-count'), TAIKENKI_DATA.length, 800);
+        countUp(document.getElementById('stat-univ'),  univSet.size, 800);
+      }, 300);
+
+      // フィルターボタン
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          currentFilter = btn.dataset.filter;
+          renderCards(currentFilter);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
