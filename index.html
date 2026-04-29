@@ -1,350 +1,112 @@
-<!DOCTYPE html>
-<html lang="ja" data-root="">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="先輩たちのリアルな大学受験体験記。勉強法・参考書・スケジュールを詳しく紹介します。">
-  <meta property="og:title" content="合格体験記">
-  <meta property="og:description" content="先輩たちのリアルな大学受験体験記。">
-  <meta property="og:type" content="website">
-  <title>合格体験記</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/global.css">
-  <style>
-    /* ===== 統計バー ===== */
-    .stats-bar {
-      background: var(--color-bg-white);
-      border-bottom: 1px solid var(--color-border-light);
-      padding: var(--space-md) 0;
+  <!-- =========================================================
+       基本設定
+       ========================================================= -->
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <!-- =========================================================
+       SEO
+       ========================================================= -->
+  <title>
+    大学受験 合格体験記｜先輩たちのリアルな勉強法・参考書・逆転合格記録
+  </title>
+
+  <meta
+    name="description"
+    content="大学受験を乗り越えた先輩たちのリアルな合格体験記を掲載。勉強法・参考書・スケジュール・失敗談まで詳しく紹介。"
+  />
+
+  <meta
+    name="keywords"
+    content="大学受験,合格体験記,勉強法,参考書,逆転合格,受験記,現役合格"
+  />
+
+  <meta name="robots" content="index, follow" />
+
+  <!-- canonical -->
+  <link
+    rel="canonical"
+    href="https://keishuhatta-bit.github.io/83-rokko-uragoukakutaikenki/"
+  />
+
+  <!-- =========================================================
+       OGP
+       ========================================================= -->
+  <meta property="og:type" content="website" />
+
+  <meta
+    property="og:title"
+    content="大学受験 合格体験記"
+  />
+
+  <meta
+    property="og:description"
+    content="先輩たちのリアルな大学受験体験記。勉強法・参考書・スケジュールを詳しく紹介。"
+  />
+
+  <meta
+    property="og:url"
+    content="https://keishuhatta-bit.github.io/83-rokko-uragoukakutaikenki/"
+  />
+
+  <meta
+    property="og:image"
+    content="https://keishuhatta-bit.github.io/83-rokko-uragoukakutaikenki/ogp.png"
+  />
+
+  <meta property="og:site_name" content="大学受験 合格体験記" />
+
+  <meta property="og:locale" content="ja_JP" />
+
+  <!-- =========================================================
+       Twitter Card
+       ========================================================= -->
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+
+  <!-- =========================================================
+       構造化データ（JSON-LD）
+       ========================================================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "大学受験 合格体験記",
+    "url": "https://keishuhatta-bit.github.io/83-rokko-uragoukakutaikenki/",
+    "description": "大学受験を乗り越えた先輩たちのリアルな合格体験記サイト",
+    "inLanguage": "ja",
+    "publisher": {
+      "@type": "Person",
+      "name": "keishuhatta-bit"
     }
-    .stats-list {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xl);
-      flex-wrap: wrap;
-    }
-    .stat-item {
-      display: flex;
-      align-items: baseline;
-      gap: var(--space-xs);
-    }
-    .stat-item__num {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--color-navy);
-      line-height: 1;
-    }
-    .stat-item__unit {
-      font-size: 0.78rem;
-      color: var(--color-text-muted);
-    }
-    .stat-sep {
-      width: 1px;
-      height: 24px;
-      background: var(--color-border);
-    }
-
-    /* ===== フィルターバー ===== */
-    .filter-bar {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      flex-wrap: wrap;
-      margin-bottom: var(--space-xl);
-    }
-    .filter-btn {
-      padding: 6px 16px;
-      border-radius: var(--radius-full);
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--color-text-muted);
-      background: var(--color-bg-white);
-      border: 1px solid var(--color-border);
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-    .filter-btn:hover,
-    .filter-btn.is-active {
-      background: var(--color-navy);
-      border-color: var(--color-navy);
-      color: #fff;
-    }
-
-    /* ===== aboutセクション ===== */
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: var(--space-lg);
-      margin-top: var(--space-xl);
-    }
-    .about-item {
-      background: var(--color-bg-white);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl);
-      box-shadow: var(--shadow-card);
-      border-top: 3px solid var(--color-navy);
-    }
-    .about-item__icon {
-      width: 40px;
-      height: 40px;
-      background: var(--color-navy-pale);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-md);
-      font-size: 1.1rem;
-    }
-    .about-item__title {
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--color-navy);
-      margin-bottom: var(--space-sm);
-    }
-    .about-item__desc {
-      font-size: 0.88rem;
-      color: var(--color-text-muted);
-      line-height: 1.75;
-    }
-
-    /* ===== カード空状態 ===== */
-    .card-empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: var(--space-3xl);
-      color: var(--color-text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* ===== フェードインアニメーション ===== */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .card {
-      animation: fadeUp 0.4s ease both;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ヘッダー（loader.jsが挿入） -->
-  <div id="site-header"></div>
-
-  <main id="main-content">
-
-    <!-- ===== ヒーローセクション ===== -->
-    <section class="hero" aria-label="ヒーロー">
-      <div class="container">
-        <div class="hero__inner">
-          <p class="hero__label">STUDENT VOICES</p>
-          <h1 class="hero__title">
-            先輩たちの<em>リアルな声</em>が<br>
-            あなたの受験を変える。
-          </h1>
-          <p class="hero__desc">
-            実際に大学受験を乗り越えた先輩たちが、勉強法・参考書・スケジュール・失敗談まで包み隠さず語ります。一人ひとりの体験記から、あなただけの合格戦略を見つけてください。
-          </p>
-          <div style="display:flex; gap:var(--space-md); flex-wrap:wrap;">
-            <a href="#taikenki" class="btn btn--primary">体験記を読む</a>
-            <a href="#about"    class="btn btn--outline">このサイトについて</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 統計バー ===== -->
-    <div class="stats-bar" aria-label="サイト統計">
-      <div class="container">
-        <ul class="stats-list">
-          <li class="stat-item">
-            <span class="stat-item__num" id="stat-count">0</span>
-            <span class="stat-item__unit">名の体験記</span>
-          </li>
-          <li class="stat-sep" aria-hidden="true"></li>
-          <li class="stat-item">
-            <span class="stat-item__num" id="stat-univ">0</span>
-            <span class="stat-item__unit">大学の合格実績</span>
-          </li>
-          <li class="stat-sep" aria-hidden="true"></li>
-          <li class="stat-item">
-            <span class="stat-item__num">2025</span>
-            <span class="stat-item__unit">年度版</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ===== 体験記一覧セクション ===== -->
-    <section class="section" id="taikenki" aria-labelledby="taikenki-title">
-      <div class="container">
-        <header class="section__header">
-          <p class="section__label">TAIKENKI</p>
-          <h2 class="section__title" id="taikenki-title">合格体験記一覧</h2>
-          <p class="section__desc">
-            先輩たちの体験記を読んで、受験勉強のヒントを見つけよう。
-          </p>
-        </header>
-
-        <!-- フィルター -->
-        <div class="filter-bar" role="group" aria-label="フィルター">
-          <button class="filter-btn" data-filter="all">すべて</button>
-          <button class="filter-btn is-active" data-filter="genshiyaku">現役</button>
-          <button class="filter-btn" data-filter="rikei">理系</button>
-          <button class="filter-btn" data-filter="bunkei">文系</button>
-        </div>
-
-        <!-- カード一覧（JSで生成） -->
-        <div class="card-grid" id="card-grid" aria-live="polite">
-          <!-- ローディングプレースホルダー -->
-          <div class="loading-placeholder" style="height:320px;border-radius:var(--radius-lg);" aria-hidden="true"></div>
-          <div class="loading-placeholder" style="height:320px;border-radius:var(--radius-lg);" aria-hidden="true"></div>
-          <div class="loading-placeholder" style="height:320px;border-radius:var(--radius-lg);" aria-hidden="true"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== このサイトについてセクション ===== -->
-    <section class="section section--alt" id="about" aria-labelledby="about-title">
-      <div class="container">
-        <header class="section__header">
-          <p class="section__label">ABOUT</p>
-          <h2 class="section__title" id="about-title">このサイトについて</h2>
-          <p class="section__desc">
-            受験生に寄り添う、リアルな体験記サイトです。
-          </p>
-        </header>
-        <div class="about-grid">
-          <div class="about-item">
-            <div class="about-item__icon" aria-hidden="true">📖</div>
-            <h3 class="about-item__title">リアルな体験記</h3>
-            <p class="about-item__desc">受験を終えた先輩が、成功・失敗を包み隠さず語ります。きれいごとなしのリアルな声をお届けします。</p>
-          </div>
-          <div class="about-item">
-            <div class="about-item__icon" aria-hidden="true">📚</div>
-            <h3 class="about-item__title">参考書・勉強法</h3>
-            <p class="about-item__desc">実際に使った参考書や具体的な勉強法を科目別に紹介。自分に合った方法を見つけるヒントが満載です。</p>
-          </div>
-          <div class="about-item">
-            <div class="about-item__icon" aria-hidden="true">🗓️</div>
-            <h3 class="about-item__title">スケジュール公開</h3>
-            <p class="about-item__desc">1年間の勉強スケジュールを公開。いつ何をどれだけやったかを時系列でたどることができます。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- フッター（loader.jsが挿入） -->
-  <div id="site-footer"></div>
-
-  <!-- 共通loader -->
-  <script type="module" src="components/loader.js"></script>
-
-  <!-- 体験記データ＆カード生成スクリプト -->
-  <script type="module">
-    import { TAIKENKI_DATA } from './components/taikenki-data.js';
-
-    /* ============================================================
-       カード生成
-       ============================================================ */
-    function buildCard(person, index) {
-      const card = document.createElement('a');
-      card.className = 'card';
-      card.href      = `taikenki/${person.id}/`;
-      card.setAttribute('data-type', person.type.join(' '));
-      card.style.animationDelay = `${index * 60}ms`;
-      card.setAttribute('aria-label', `${person.initials}さんの体験記 - ${person.univ}`);
-
-      card.innerHTML = `
-        <div class="card__image-placeholder" aria-hidden="true">${person.initials}</div>
-        <div class="card__body">
-          <span class="card__univ">${person.univ}</span>
-          <p class="card__name">${person.initials} さん</p>
-          <p class="card__comment">「${person.comment}」</p>
-          <div class="card__footer">
-            <span class="card__tag">${person.year}</span>
-            <span class="card__arrow" aria-hidden="true">→</span>
-          </div>
-        </div>
-      `;
-      return card;
-    }
-
-    /* ============================================================
-       フィルタリング
-       ============================================================ */
-    let currentFilter = 'all';
-
-    function renderCards(filter) {
-      const grid = document.getElementById('card-grid');
-      grid.innerHTML = '';
-
-      const filtered = filter === 'all'
-        ? TAIKENKI_DATA
-        : TAIKENKI_DATA.filter(p => p.type.includes(filter));
-
-      if (filtered.length === 0) {
-        const empty = document.createElement('p');
-        empty.className = 'card-empty';
-        empty.textContent = '該当する体験記がありません。';
-        grid.appendChild(empty);
-        return;
-      }
-
-      filtered.forEach((person, i) => {
-        grid.appendChild(buildCard(person, i));
-      });
-    }
-
-    /* ============================================================
-       統計カウントアップ
-       ============================================================ */
-    function countUp(el, target, duration) {
-      let start = 0;
-      const step = target / (duration / 16);
-      const timer = setInterval(() => {
-        start += step;
-        if (start >= target) {
-          el.textContent = target;
-          clearInterval(timer);
-        } else {
-          el.textContent = Math.floor(start);
-        }
-      }, 16);
-    }
-
-    /* ============================================================
-       初期化
-       ============================================================ */
-    document.addEventListener('DOMContentLoaded', () => {
-      // カード描画
-      currentFilter = 'genshiyaku';
-      renderCards('genshiyaku');
-
-      // 統計
-      const univSet = new Set(TAIKENKI_DATA.map(p => p.univ.split(' ')[0]));
-      setTimeout(() => {
-        countUp(document.getElementById('stat-count'), TAIKENKI_DATA.length, 800);
-        countUp(document.getElementById('stat-univ'),  univSet.size, 800);
-      }, 300);
-
-      // フィルターボタン
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('is-active'));
-          btn.classList.add('is-active');
-          currentFilter = btn.dataset.filter;
-          renderCards(currentFilter);
-        });
-      });
-    });
+  }
   </script>
 
-</body>
-</html>
+  <!-- =========================================================
+       フォント
+       ========================================================= -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- =========================================================
+       CSS
+       ========================================================= -->
+  <link rel="stylesheet" href="styles/global.css" />
+</head>

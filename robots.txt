@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://keishuhatta-bit.github.io/83-rokko-uragoukakutaikenki/sitemap.xml
