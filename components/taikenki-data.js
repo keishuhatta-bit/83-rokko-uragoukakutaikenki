@@ -10,7 +10,7 @@ export const TAIKENKI_DATA = [
     initials: 'K.N',
     univ:     '熊本大学 医学部 医学科',
     type:     ['genshiyaku', 'rikei'],
-    comment:  '熊本で待ってんで。',
+    comment:  '大学生なったんで',
     year:     '現役合格',
   },
   {
@@ -26,7 +26,7 @@ export const TAIKENKI_DATA = [
     initials: 'H.H',
     univ:     '京都大学 経済学部',
     type:     ['genshiyaku', 'bunkei'],
-    comment:  '穴をなくす。',
+    comment:  '大学生のなり方',
     year:     '現役合格',
   },
   {
@@ -34,7 +34,7 @@ export const TAIKENKI_DATA = [
     initials: 'K.H',
     univ:     '金沢大学 医薬保健学域 医学類',
     type:     ['genshiyaku', 'rikei'],
-    comment:  'すべては今の自分次第。',
+    comment:  '全ては今の自分次第。',
     year:     '現役合格',
   },
   {
