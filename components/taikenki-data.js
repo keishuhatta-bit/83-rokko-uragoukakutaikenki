@@ -42,7 +42,7 @@ export const TAIKENKI_DATA = [
     initials: 'K.O',
     univ:     '一橋大学 商学部',
     type:     ['genshiyaku', 'bunkei'],
-    comment:  '二次力。',
+    comment:  '国語偏差値26でも一橋に行く方法',
     year:     '現役合格',
   },
   {
