@@ -50,7 +50,7 @@ export const TAIKENKI_DATA = [
     initials: 'R.M',
     univ:     '山梨大学 医学部 医学科',
     type:     ['genshiyaku', 'rikei'],
-    comment:  'あああ',
+    comment:  '近日公開予定',
     year:     '現役合格',
   },
    {
