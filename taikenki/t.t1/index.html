@@ -91,32 +91,56 @@
     table.score tr:last-child td { border-bottom: none; }
     table.score td.b { font-weight: 700; }
 
-    /* 共テ点数テーブル */
-    table.kyo {
+    /* 全統記述テーブル */
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin: var(--space-md) 0;
+    }
+    .score-table th {
+      background: var(--color-navy);
+      color: #fff;
+      padding: 6px 12px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .score-table th.r, .score-table td.r { text-align: right; }
+    .score-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--color-border-light);
+      color: var(--color-text);
+    }
+    .score-table tr:nth-child(even) td { background: var(--color-navy-pale); }
+    .score-table tr:last-child td { border-bottom: none; }
+    .score-table td.b { font-weight: 700; }
+
+    /* 共テ */
+    .kyo-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.82rem;
       margin: var(--space-md) 0;
-      overflow-x: auto;
       display: block;
+      overflow-x: auto;
     }
-    table.kyo th {
+    .kyo-table th {
       background: var(--color-navy);
       color: #fff;
       padding: 5px 8px;
       font-weight: 700;
       white-space: nowrap;
+      text-align: center;
     }
-    table.kyo td {
+    .kyo-table td {
       padding: 5px 8px;
       border-bottom: 1px solid var(--color-border-light);
       text-align: center;
       white-space: nowrap;
     }
-    table.kyo tr:nth-child(even) td { background: var(--color-navy-pale); }
-    table.kyo tr:last-child td { border-bottom: none; }
-    table.kyo td.b { font-weight: 700; }
-    table.kyo td.l { text-align: left; }
+    .kyo-table tr:nth-child(even) td { background: var(--color-navy-pale); }
+    .kyo-table tr:last-child td { border-bottom: none; }
+    .kyo-table td.b { font-weight: 700; }
   </style>
 </head>
 <body>
@@ -227,10 +251,10 @@
         <p>共テパック：進研865・代ゼミ904・Z会879/890・駿台894・河合886</p>
 
         <p><strong>共通テスト本番（自己採）</strong></p>
-        <table class="kyo">
-          <thead><tr><th>科目</th><th>英語R</th><th>英語L</th><th>数学①</th><th>数学②</th><th>化学</th><th>物理</th><th>国語</th><th>日本史</th><th>情報</th><th>合計</th></tr></thead>
+        <table class="kyo-table">
+          <thead><tr><th>英語R</th><th>英語L</th><th>数学①</th><th>数学②</th><th>化学</th><th>物理</th><th>国語</th><th>日本史</th><th>情報</th><th>合計</th></tr></thead>
           <tbody>
-            <tr><td class="l b">点数</td><td>94</td><td>88</td><td>90</td><td>100</td><td>94</td><td>91</td><td>170</td><td>100</td><td>62</td><td class="b">889</td></tr>
+            <tr><td>94</td><td>88</td><td>90</td><td>100</td><td>94</td><td>91</td><td>170</td><td>100</td><td>62</td><td class="b">889</td></tr>
           </tbody>
         </table>
         <p>阪医配点で455.5/500でした。最後に共テはゴミです。東大・京大など共テ配点が低い大学を受ける人は2次の小問いくつで共テのビハインドを無くせるのかを考えた方がいいです。</p>
@@ -291,7 +315,7 @@
           </div>
         </div>
 
-        <p>数学が簡単だったので点数の割には偏差値が低い。物理はいい感じでしたが、化学で計算問題がほとんど合っておらず散々でした。医学部はA判定です。</p>
+        <p>数学が簡単だったので点数の割には偏差値が低い。物理が自分にハマりいい感じの点を出せましたが、化学で計算問題がほとんど合っておらず、有機の構造決定も記入例違反で全部減点されるなど散々でした。医学部はA判定です。</p>
 
         <h3>阪大オープン（河合）　11月</h3>
 
@@ -307,28 +331,17 @@
                 <tr><th>教科・科目</th><th class="r">得点/配点</th><th class="r">偏差値</th><th class="r">全国席次（番/名中）</th></tr>
               </thead>
               <tbody>
-                <tr><td>英語</td><td class="r b">141 / 200</td><td class="r b">65.2</td><td class="r">268 / 4,880</td></tr>
-                <tr><td>数学</td><td class="r b">192 / 200</td><td class="r b">73.5</td><td class="r">19 / 4,803</td></tr>
-                <tr><td>物理</td><td class="r b">76 / 100</td><td class="r b">80.9</td><td class="r">28 / 4,369</td></tr>
-                <tr><td>化学</td><td class="r b">63 / 100</td><td class="r b">65.9</td><td class="r">257 / 4,825</td></tr>
-                <tr><td>理科2科目</td><td class="r b">139 / 200</td><td class="r b">76.9</td><td class="r">46 / 4,793</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="modoshi-section">
-            <div class="modoshi-section-title">■2　成績集計コース別成績（2次型）</div>
-            <table class="score">
-              <thead>
-                <tr><th>成績集計コース</th><th class="r">得点/配点</th><th class="r">偏差値</th><th class="r">全国席次（番/名中）</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>医医型</td><td class="r b">1,181 / 1,500</td><td class="r b">75.9</td><td class="r">38 / 4,792</td></tr>
+                <tr><td>英語理系</td><td class="r b">99 / 150</td><td class="r b">65.5</td><td class="r">281 / 5,168</td></tr>
+                <tr><td>数学理系</td><td class="r b">154 / 200</td><td class="r b">74.9</td><td class="r">38 / 5,069</td></tr>
+                <tr><td>物理</td><td class="r b">61 / 100</td><td class="r b">67.7</td><td class="r">229 / 4,626</td></tr>
+                <tr><td>化学</td><td class="r b">70 / 100</td><td class="r b">72.1</td><td class="r">83 / 5,105</td></tr>
+                <tr><td>英数理2型</td><td class="r b">384 / 550</td><td class="r b">76.0</td><td class="r">39 / 5,072</td></tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <p>全体的に上手くいっておらず点も低い。数学で若干こけ、物理で序盤で計算ミス、化学で得意の有機でボコボコにされるなど色々終わってました。医学部はB判定です。</p>
+        <p>全体的に上手くいっておらず点も低い。数学で若干こけてしまったこと、物理で序盤で計算をミスったこと、化学で得意の有機でボコボコにされたことなどいろいろ終わってました。医学部はB判定です。</p>
 
         <h3>高2の3月　阪大直近日模試（東進）</h3>
         <p>英語119/200・数学208/250・化学37/100・物理26/100　全国9位・医学部B判定。東進は採点が雑でほとんど当てになりません。</p>
@@ -337,56 +350,58 @@
 
         <div class="modoshi-wrap">
           <div class="modoshi-header">
-            <p class="modoshi-header__title">全統記述模試　個人成績</p>
-            <span>2026年度</span>
+            <p class="modoshi-header__title">全統記述模試　個人成績（2026年度）</p>
           </div>
           <div class="modoshi-section">
-            <div class="modoshi-section-title">第1回　教科・科目別成績</div>
+            <div class="modoshi-section-title">第1回</div>
             <table class="score">
               <thead>
-                <tr><th>科目</th><th class="r">得点/配点</th><th class="r">偏差値</th><th class="r">順位/受験者数</th></tr>
+                <tr><th>科目</th><th class="r">得点/配点</th></tr>
               </thead>
               <tbody>
-                <tr><td>英語理系</td><td class="r">99 / 150</td><td class="r">65.5</td><td class="r">281 / 5,168</td></tr>
-                <tr><td>数学理系</td><td class="r b">154 / 200</td><td class="r b">74.9</td><td class="r">38 / 5,069</td></tr>
-                <tr><td>物理</td><td class="r">61 / 100</td><td class="r">67.7</td><td class="r">229 / 4,626</td></tr>
-                <tr><td>化学</td><td class="r">70 / 100</td><td class="r">72.1</td><td class="r">83 / 5,105</td></tr>
-                <tr><td>英数理2型</td><td class="r b">384 / 550</td><td class="r b">76.0</td><td class="r">39 / 5,072</td></tr>
+                <tr><td>英語</td><td class="r">161 / 200</td></tr>
+                <tr><td>数学</td><td class="r b">188 / 200</td></tr>
+                <tr><td>化学</td><td class="r">75 / 100</td></tr>
+                <tr><td>物理</td><td class="r">64 / 100</td></tr>
               </tbody>
             </table>
+            <div style="padding:4px 10px; font-size:0.78rem; color:var(--color-text-muted);">偏差値72.4　阪医C判定</div>
           </div>
           <div class="modoshi-section">
-            <div class="modoshi-section-title">第2回　教科・科目別成績</div>
+            <div class="modoshi-section-title">第2回</div>
             <table class="score">
               <thead>
-                <tr><th>科目</th><th class="r">得点/配点</th><th class="r">偏差値</th><th class="r">順位/受験者数</th></tr>
+                <tr><th>科目</th><th class="r">得点/配点</th></tr>
               </thead>
               <tbody>
-                <tr><td>英語理系</td><td class="r">153 / 200</td><td class="r">66.9</td><td class="r">1,500 / 71,732</td></tr>
-                <tr><td>数学理系</td><td class="r b">170 / 200</td><td class="r b">71.0</td><td class="r">1,478 / 107,544</td></tr>
-                <tr><td>物理</td><td class="r b">77 / 100</td><td class="r b">75.7</td><td class="r">416 / 99,102</td></tr>
-                <tr><td>化学</td><td class="r">94 / 100</td><td class="r">73.1</td><td class="r">252 / 113,349</td></tr>
+                <tr><td>英語</td><td class="r">160 / 200</td></tr>
+                <tr><td>数学</td><td class="r b">175 / 200</td></tr>
+                <tr><td>化学</td><td class="r b">94 / 100</td></tr>
+                <tr><td>物理</td><td class="r">84 / 100</td></tr>
               </tbody>
             </table>
+            <div style="padding:4px 10px; font-size:0.78rem; color:var(--color-text-muted);">偏差値71.5　阪医C判定</div>
           </div>
           <div class="modoshi-section">
-            <div class="modoshi-section-title">第3回　教科・科目別成績</div>
+            <div class="modoshi-section-title">第3回</div>
             <table class="score">
               <thead>
-                <tr><th>科目</th><th class="r">得点/配点</th><th class="r">偏差値</th><th class="r">順位/受験者数</th></tr>
+                <tr><th>科目</th><th class="r">得点/配点</th></tr>
               </thead>
               <tbody>
-                <tr><td>英語理系</td><td class="r">150 / 200</td><td class="r">70.7</td><td class="r">6,775 / 260,630</td></tr>
-                <tr><td>数学理系</td><td class="r b">133 / 200</td><td class="r b">63.5</td><td class="r">5,800 / 100,790</td></tr>
-                <tr><td>物理</td><td class="r">74 / 100</td><td class="r">68.7</td><td class="r">2,851 / 97,082</td></tr>
-                <tr><td>化学</td><td class="r">75 / 100</td><td class="r">72.1</td><td class="r">2,719 / 107,441</td></tr>
+                <tr><td>英語</td><td class="r">153 / 200</td></tr>
+                <tr><td>数学</td><td class="r b">182 / 200</td></tr>
+                <tr><td>化学</td><td class="r">81 / 100</td></tr>
+                <tr><td>物理</td><td class="r b">85 / 100</td></tr>
               </tbody>
             </table>
+            <div style="padding:4px 10px; font-size:0.78rem; color:var(--color-text-muted);">偏差値75.1　阪医A判定</div>
           </div>
         </div>
 
         <p>共テ模試：第1回受験せず・第2回798/D判定・第3回764/E判定・プレ825/C判定（プレ以外はノー勉）</p>
-        <p>高2までの模試はマジで参考になりません。まず1つ目の大きな目標として、夏または秋の冠模試でA判定を取ることを目指してみてください。</p>
+        <p>共テはプレ以外何も勉強していないので悪くても(笑)みたいな感じで流していました。全統記述も問題がしょうもなく、東大、京大などを受ける人たちには参考にならないのであまり気にしなくてもいいと思います。</p>
+        <p>また、模試はめちゃくちゃ参考になるというわけでも全く参考にならないというわけでもありません。でも模試の成績がいい人は受かります。まず1つ目の大きな目標として、夏または秋の冠模試でA判定を取ることを目指してみてください。高2までの模試はマジで参考になりません。六甲の教師はプロシードの判定が本番の合否と相関があるとか言っていましたがほぼなにも関係ないです。僕はD判定でした。</p>
 
         <h2>④ やっていた参考書・教材（2次用）</h2>
 
@@ -441,7 +456,7 @@
         <p><strong>共テについて</strong><br>
         共テはゴミです。共テはゴミです。大事なことなので2回言いました。時間を縮めて演習する、これに尽きます。共テの勉強をし始める時期は早くても11月の冠模試が終わってからでいいと思います。僕は12/10頃に本格的に始めました。</p>
 
-        <p>ここまで読んでくれてありがとうございました。皆さんの受験に少しでも役立てば良いなと思います。諦めなければ道は開けます。頑張ってください。</p>
+        <p>ここまで読んでくれてありがとうございました。皆さんの受験に少しでも役立てば良いなと思います。諦めなければ道は開けます。頑張ってください。ありがとうございました。</p>
 
       </div>
 
