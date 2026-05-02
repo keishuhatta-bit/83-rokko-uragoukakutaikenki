@@ -131,6 +131,12 @@ async function init() {
   // 挿入完了後に初期化
   setActiveNav();
   initMobileNav();
+
+  // ロゴリンクをroot基準のトップページに設定
+  const logoLink = document.getElementById('site-logo-link');
+  if (logoLink) {
+    logoLink.href = root + 'index.html';
+  }
 }
 
 // DOMContentLoaded を待たず即時実行（type="module" は defer 相当のため安全）
