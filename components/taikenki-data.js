@@ -34,7 +34,7 @@ export const TAIKENKI_DATA = [
     initials: 'K.H',
     univ:     '金沢大学 医薬保健学域 医学類',
     type:     ['genshiyaku', 'rikei'],
-    comment:  '全ては今の自分次第。',
+    comment:  '全ては今の自分次第',
     year:     '現役合格',
   },
   {
